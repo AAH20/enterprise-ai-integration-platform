@@ -1,0 +1,31 @@
+{
+  "scenario": "Durable multi-system order-to-cash integration replay",
+  "adapter_profiles": {
+    "enterprise": {
+      "crm": {"product":"Salesforce Sales Cloud","mode":"target-contract","cost_per_call_usd":0.015,"compensation_cost_usd":0.01},
+      "erp": {"product":"SAP S/4HANA","mode":"target-contract","cost_per_call_usd":0.025,"compensation_cost_usd":0.02},
+      "finance": {"product":"Oracle Fusion Cloud ERP","mode":"target-contract","cost_per_call_usd":0.03,"compensation_cost_usd":0.025},
+      "logistics": {"product":"Enterprise Logistics API","mode":"synthetic","cost_per_call_usd":0.02,"compensation_cost_usd":0.015},
+      "provisioning": {"product":"Azure Provisioning API","mode":"synthetic","cost_per_call_usd":0.018,"compensation_cost_usd":0.014},
+      "billing": {"product":"Oracle Billing Contract","mode":"target-contract","cost_per_call_usd":0.028,"compensation_cost_usd":0.0}
+    },
+    "oss": {
+      "crm": {"product":"SuiteCRM / EspoCRM","mode":"open-source-contract","cost_per_call_usd":0.004,"compensation_cost_usd":0.003},
+      "erp": {"product":"Odoo / ERPNext","mode":"open-source-contract","cost_per_call_usd":0.006,"compensation_cost_usd":0.005},
+      "finance": {"product":"ERPNext Accounts on PostgreSQL","mode":"open-source-contract","cost_per_call_usd":0.005,"compensation_cost_usd":0.004},
+      "logistics": {"product":"Open Logistics API","mode":"synthetic","cost_per_call_usd":0.004,"compensation_cost_usd":0.003},
+      "provisioning": {"product":"Crossplane / OpenTofu","mode":"open-source-contract","cost_per_call_usd":0.004,"compensation_cost_usd":0.003},
+      "billing": {"product":"Kill Bill","mode":"open-source-contract","cost_per_call_usd":0.005,"compensation_cost_usd":0.0}
+    }
+  },
+  "unit_economics": {"baseline_cost_per_transaction_usd":4.2,"baseline_human_minutes_per_transaction":18},
+  "transactions": [
+    {"transaction_id":"TX-1001","idempotency_key":"ORDER-1001-V1","profile":"enterprise","revenue_usd":12500,"gross_margin_pct":0.36},
+    {"transaction_id":"TX-1002","idempotency_key":"ORDER-1002-V1","profile":"enterprise","revenue_usd":8300,"gross_margin_pct":0.31,"failure_injection":"transient:finance"},
+    {"transaction_id":"TX-1003","idempotency_key":"ORDER-1003-V1","profile":"enterprise","revenue_usd":18600,"gross_margin_pct":0.41,"failure_injection":"permanent:logistics"},
+    {"transaction_id":"TX-1004","idempotency_key":"ORDER-1004-V1","profile":"oss","revenue_usd":6200,"gross_margin_pct":0.28},
+    {"transaction_id":"TX-1005","idempotency_key":"ORDER-1005-V1","profile":"oss","revenue_usd":9700,"gross_margin_pct":0.33,"failure_injection":"transient:erp"},
+    {"transaction_id":"TX-1006","idempotency_key":"ORDER-1006-V1","profile":"oss","revenue_usd":14500,"gross_margin_pct":0.38,"failure_injection":"permanent:provisioning"},
+    {"transaction_id":"TX-1001-REDELIVERY","idempotency_key":"ORDER-1001-V1","profile":"enterprise","revenue_usd":12500,"gross_margin_pct":0.36}
+  ]
+}

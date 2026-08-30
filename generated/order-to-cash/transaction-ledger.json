@@ -1,0 +1,588 @@
+{
+  "schema_version": "flowforge/v1",
+  "scenario": "Durable multi-system order-to-cash integration replay",
+  "evidence_level": "deterministic-synthetic-integration-test",
+  "transactions": [
+    {
+      "transaction_id": "TX-1001",
+      "idempotency_key": "ORDER-1001-V1",
+      "status": "completed",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "Salesforce Sales Cloud (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.015,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "SAP S/4HANA (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.025,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "Oracle Fusion Cloud ERP (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.03,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Enterprise Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.02,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Azure Provisioning API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.018,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "billing",
+          "system": "billing",
+          "adapter": "Oracle Billing Contract (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.028,
+          "detail": "idempotent operation committed"
+        }
+      ],
+      "completed_steps": 6,
+      "compensations": 0,
+      "workflow_cost_usd": 0.136,
+      "contribution_usd": 4500.0,
+      "net_contribution_usd": 4499.86
+    },
+    {
+      "transaction_id": "TX-1002",
+      "idempotency_key": "ORDER-1002-V1",
+      "status": "completed",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "Salesforce Sales Cloud (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.015,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "SAP S/4HANA (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.025,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "Oracle Fusion Cloud ERP (target-contract)",
+          "status": "completed-after-retry",
+          "attempt": 2,
+          "compensable": true,
+          "cost_usd": 0.06,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Enterprise Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.02,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Azure Provisioning API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.018,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "billing",
+          "system": "billing",
+          "adapter": "Oracle Billing Contract (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.028,
+          "detail": "idempotent operation committed"
+        }
+      ],
+      "completed_steps": 6,
+      "compensations": 0,
+      "workflow_cost_usd": 0.166,
+      "contribution_usd": 2573.0,
+      "net_contribution_usd": 2572.83
+    },
+    {
+      "transaction_id": "TX-1003",
+      "idempotency_key": "ORDER-1003-V1",
+      "status": "compensated",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "Salesforce Sales Cloud (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.015,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "SAP S/4HANA (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.025,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "Oracle Fusion Cloud ERP (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.03,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Enterprise Logistics API (synthetic)",
+          "status": "failed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.02,
+          "detail": "failure injected before commit"
+        },
+        {
+          "step": "compensate:finance",
+          "system": "finance",
+          "adapter": "Oracle Fusion Cloud ERP (target-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.025,
+          "detail": "reverse prior committed operation"
+        },
+        {
+          "step": "compensate:erp",
+          "system": "erp",
+          "adapter": "SAP S/4HANA (target-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.02,
+          "detail": "reverse prior committed operation"
+        },
+        {
+          "step": "compensate:crm",
+          "system": "crm",
+          "adapter": "Salesforce Sales Cloud (target-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.01,
+          "detail": "reverse prior committed operation"
+        }
+      ],
+      "completed_steps": 3,
+      "compensations": 3,
+      "workflow_cost_usd": 0.145,
+      "contribution_usd": 7626.0,
+      "net_contribution_usd": -0.15
+    },
+    {
+      "transaction_id": "TX-1004",
+      "idempotency_key": "ORDER-1004-V1",
+      "status": "completed",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "SuiteCRM / EspoCRM (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "Odoo / ERPNext (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.006,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "ERPNext Accounts on PostgreSQL (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.005,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Open Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Crossplane / OpenTofu (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "billing",
+          "system": "billing",
+          "adapter": "Kill Bill (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.005,
+          "detail": "idempotent operation committed"
+        }
+      ],
+      "completed_steps": 6,
+      "compensations": 0,
+      "workflow_cost_usd": 0.028,
+      "contribution_usd": 1736.0,
+      "net_contribution_usd": 1735.97
+    },
+    {
+      "transaction_id": "TX-1005",
+      "idempotency_key": "ORDER-1005-V1",
+      "status": "completed",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "SuiteCRM / EspoCRM (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "Odoo / ERPNext (open-source-contract)",
+          "status": "completed-after-retry",
+          "attempt": 2,
+          "compensable": true,
+          "cost_usd": 0.012,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "ERPNext Accounts on PostgreSQL (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.005,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Open Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Crossplane / OpenTofu (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "billing",
+          "system": "billing",
+          "adapter": "Kill Bill (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.005,
+          "detail": "idempotent operation committed"
+        }
+      ],
+      "completed_steps": 6,
+      "compensations": 0,
+      "workflow_cost_usd": 0.034,
+      "contribution_usd": 3201.0,
+      "net_contribution_usd": 3200.97
+    },
+    {
+      "transaction_id": "TX-1006",
+      "idempotency_key": "ORDER-1006-V1",
+      "status": "compensated",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "SuiteCRM / EspoCRM (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "Odoo / ERPNext (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.006,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "ERPNext Accounts on PostgreSQL (open-source-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.005,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Open Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Crossplane / OpenTofu (open-source-contract)",
+          "status": "failed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.004,
+          "detail": "failure injected before commit"
+        },
+        {
+          "step": "compensate:logistics",
+          "system": "logistics",
+          "adapter": "Open Logistics API (synthetic)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.003,
+          "detail": "reverse prior committed operation"
+        },
+        {
+          "step": "compensate:finance",
+          "system": "finance",
+          "adapter": "ERPNext Accounts on PostgreSQL (open-source-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.004,
+          "detail": "reverse prior committed operation"
+        },
+        {
+          "step": "compensate:erp",
+          "system": "erp",
+          "adapter": "Odoo / ERPNext (open-source-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.005,
+          "detail": "reverse prior committed operation"
+        },
+        {
+          "step": "compensate:crm",
+          "system": "crm",
+          "adapter": "SuiteCRM / EspoCRM (open-source-contract)",
+          "status": "compensated",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.003,
+          "detail": "reverse prior committed operation"
+        }
+      ],
+      "completed_steps": 4,
+      "compensations": 4,
+      "workflow_cost_usd": 0.038,
+      "contribution_usd": 5510.0,
+      "net_contribution_usd": -0.04
+    },
+    {
+      "transaction_id": "TX-1001",
+      "idempotency_key": "ORDER-1001-V1",
+      "status": "completed",
+      "steps": [
+        {
+          "step": "crm",
+          "system": "crm",
+          "adapter": "Salesforce Sales Cloud (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.015,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "erp",
+          "system": "erp",
+          "adapter": "SAP S/4HANA (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.025,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "finance",
+          "system": "finance",
+          "adapter": "Oracle Fusion Cloud ERP (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.03,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "logistics",
+          "system": "logistics",
+          "adapter": "Enterprise Logistics API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.02,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "provisioning",
+          "system": "provisioning",
+          "adapter": "Azure Provisioning API (synthetic)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": true,
+          "cost_usd": 0.018,
+          "detail": "idempotent operation committed"
+        },
+        {
+          "step": "billing",
+          "system": "billing",
+          "adapter": "Oracle Billing Contract (target-contract)",
+          "status": "completed",
+          "attempt": 1,
+          "compensable": false,
+          "cost_usd": 0.028,
+          "detail": "idempotent operation committed"
+        }
+      ],
+      "completed_steps": 6,
+      "compensations": 0,
+      "workflow_cost_usd": 0.136,
+      "contribution_usd": 4500.0,
+      "net_contribution_usd": 4499.86
+    }
+  ],
+  "reliability": {
+    "unique_transactions": 6,
+    "completed_transactions": 4,
+    "compensated_transactions": 2,
+    "duplicate_deliveries_suppressed": 1,
+    "duplicate_business_transactions": 0,
+    "straight_through_processing_pct": 66.67,
+    "successful_compensations": 7
+  },
+  "unit_economics": {
+    "modeled_completed_contribution_usd": 12009.63,
+    "modeled_platform_transaction_cost_usd": 0.55,
+    "modeled_baseline_operating_cost_usd": 25.2,
+    "modeled_operating_cost_delta_usd": 24.65,
+    "modeled_baseline_human_minutes": 108,
+    "modeled_cost_per_unique_transaction_usd": 0.09,
+    "modeled_net_contribution_per_completed_transaction_usd": 3002.41
+  },
+  "production_control": {
+    "auto_execute": false,
+    "status": "simulation-only",
+    "required_gates": [
+      "real sandbox contract tests",
+      "identity and authorization",
+      "financial reconciliation",
+      "bounded canary",
+      "operator approval",
+      "rollback drill"
+    ]
+  },
+  "claim_boundary": [
+    "No Salesforce, SAP, Oracle, Odoo, ERPNext, SuiteCRM, EspoCRM or cloud tenant was called",
+    "All transactions, failures, revenue, contribution and costs are synthetic inputs",
+    "Adapter names describe target contracts rather than certified vendor integrations",
+    "Modeled contribution and cost deltas are not realized customer revenue or savings"
+  ],
+  "receipt_sha256": "c34bee5f76414d0155de0cf01fcd5dba1f9aaea38ba3b514f4e2cc94633694ce"
+}

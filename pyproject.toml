@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flowforge-integration"
+version = "0.1.0"
+description = "AI-native enterprise integration, durable workflows, SAP, Salesforce, Oracle and OSS adapters"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Ahmed Hassan"}]
+
+[project.scripts]
+flowforge = "flowforge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

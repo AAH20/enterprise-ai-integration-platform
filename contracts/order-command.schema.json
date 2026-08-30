@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://a2zsoc.com/schemas/order-command-v1.json",
+  "title":"OrderCommand",
+  "type":"object",
+  "required":["command_id","transaction_id","idempotency_key","command_type","occurred_at","schema_version"],
+  "properties":{
+    "command_id":{"type":"string","minLength":1},
+    "transaction_id":{"type":"string","minLength":1},
+    "idempotency_key":{"type":"string","minLength":1},
+    "command_type":{"enum":["CreateOrder","ReserveInventory","AuthorizeFinance","BookLogistics","ProvisionService","CreateInvoice","Compensate"]},
+    "occurred_at":{"type":"string","format":"date-time"},
+    "schema_version":{"const":"1.0.0"},
+    "traceparent":{"type":"string"},
+    "payload":{"type":"object"}
+  },
+  "additionalProperties":false
+}
