@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.13"}
-      - run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - run: pip install -e '.[test]'
+      - run: pytest -q
       - run: PYTHONPATH=src python -m flowforge.cli examples/order-to-cash/scenario.json --output generated/order-to-cash
       - run: git diff --exit-code generated/order-to-cash
       - run: python -m compileall -q src tests
+      - run: docker build -t flowforge:${{ github.sha }} .

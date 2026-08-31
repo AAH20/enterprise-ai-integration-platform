@@ -4,14 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "flowforge-integration"
-version = "0.1.0"
+version = "1.0.0"
 description = "AI-native enterprise integration, durable workflows, SAP, Salesforce, Oracle and OSS adapters"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [{name = "Ahmed Hassan"}]
+dependencies = ["fastapi>=0.116,<1", "pydantic>=2.11,<3", "uvicorn>=0.35,<1"]
+
+[project.optional-dependencies]
+test = ["httpx>=0.28,<1", "pytest>=8.4,<9"]
 
 [project.scripts]
 flowforge = "flowforge.cli:main"
+flowforge-api = "flowforge.api:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

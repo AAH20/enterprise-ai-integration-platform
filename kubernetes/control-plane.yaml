@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: flowforge}
+spec:
+  serviceName: flowforge
+  replicas: 1
+  selector: {matchLabels: {app.kubernetes.io/name: flowforge}}
+  template:
+    metadata: {labels: {app.kubernetes.io/name: flowforge}}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: revenue-control-plane
+          image: ghcr.io/aah20/flowforge:1.0.0
+          imagePullPolicy: Always
+          ports: [{name: http, containerPort: 8080}]
+          env: [{name: FLOWFORGE_ENV, value: production}, {name: FLOWFORGE_DB, value: /data/flowforge.db}]
+          envFrom: [{secretRef: {name: flowforge-secrets}}]
+          readinessProbe: {httpGet: {path: /health/ready, port: http}}
+          livenessProbe: {httpGet: {path: /health/live, port: http}}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+            readOnlyRootFilesystem: true
+          volumeMounts: [{name: state, mountPath: /data}]
+  volumeClaimTemplates:
+    - metadata: {name: state}
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources: {requests: {storage: 5Gi}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: flowforge}
+spec:
+  selector: {app.kubernetes.io/name: flowforge}
+  ports: [{name: http, port: 80, targetPort: http}]

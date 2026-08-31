@@ -4,12 +4,13 @@ Exact search volume varies by country, platform and date and normally requires G
 
 | Search / hiring term | Repository evidence | Status |
 |---|---|---|
-| Enterprise Integration / System Integration | Six-system durable transaction replay | Implemented synthetic evaluation |
+| Artificial Intelligence / Generative AI / AI Agents | Bounded diagnostic and remediation architecture around revenue events | Control boundary implemented; model execution remains optional |
+| Enterprise Integration / System Integration | Six-system replay plus persistent canonical revenue-event API | Implemented reference platform |
 | Azure Integration Services | APIM, Service Bus, Event Grid and workflow architecture | Compilable IaC baseline; managed adapters not deployed |
 | Azure API Management / API Gateway / AI Gateway | Traditional API, model and MCP gateway architecture | Contract architecture |
 | Logic Apps / Durable Functions | Durable orchestration target | Adapter roadmap |
 | Event-Driven Architecture / Kafka | Message, redelivery, DLQ and replay design | Simulator plus local scaffold roadmap |
-| Microservices / Distributed Systems | Saga, compensation, retry and idempotency | Implemented simulation |
+| Microservices / Distributed Systems | Saga, compensation, retry, persistence and idempotency | Implemented |
 | SAP Integration / SAP S/4HANA | ERP adapter profile and failure tests | Synthetic target contract |
 | Salesforce Integration | CRM adapter profile and duplicate delivery | Synthetic target contract |
 | Oracle Integration / Oracle ERP | Finance and billing adapter profiles | Synthetic target contract |
@@ -17,8 +18,11 @@ Exact search volume varies by country, platform and date and normally requires G
 | SuiteCRM / EspoCRM | OSS CRM adapter profile | Synthetic target contract |
 | Temporal / Dapr / Camunda | OSS durable workflow alternatives | Architecture roadmap |
 | MCP / AI Agents / Agentic AI | Tool and exception-resolution boundary | Architecture roadmap |
-| Kubernetes / Platform Engineering | Hybrid runtime path | Architecture roadmap |
-| Business Process Automation | Order-to-cash transaction and economics | Implemented simulation |
+| Kubernetes / Cloud Computing / Platform Engineering | Hardened persistent control-plane deployment | Implemented single-writer reference |
+| Business Process Automation / Digital Transformation | Order-to-cash transaction, exposure and economics | Implemented |
+| Data Engineering / Business Intelligence / Power BI | Canonical revenue events and revenue-at-risk output | API implemented; Power BI semantic model remains integration work |
+| Revenue Operations / Order to Cash | Opportunity-to-recognition event graph and stalled-stage detection | Implemented |
+| Process Mining / Predictive Analytics | Temporal stage analysis and SLO breach detection | Descriptive/prescriptive baseline implemented |
 
 ## Current source anchors
 

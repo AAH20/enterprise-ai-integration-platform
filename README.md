@@ -2,13 +2,13 @@
 
 ## Azure Integration Services, API Management, Logic Apps, Service Bus, Kafka, Microservices, SAP, Salesforce, Oracle, Odoo, ERPNext, MCP, AI Agents and Durable Workflows
 
-**FlowForge** is an open-source reference implementation for reliable enterprise transactions across AI agents, APIs, CRM, ERP, finance, billing, logistics and cloud provisioning.
+**FlowForge** is an open-source enterprise integration and revenue-reliability control plane for AI agents, APIs, CRM, ERP, finance, billing, logistics and cloud provisioning. It combines durable Saga evaluation with a persistent canonical order-to-cash event ledger that detects stalled transactions and quantifies revenue and margin at risk.
 
 It demonstrates the production question that ordinary AI demos ignore:
 
 > Can an AI-assisted workflow complete a revenue transaction across unreliable systems without duplicating orders, charging twice or losing state when a later step fails?
 
-> **Claim boundary:** all systems, transactions, failures, revenue and costs are synthetic. Adapter names represent target contracts—not certified Salesforce, SAP, Oracle or Microsoft integrations.
+> **Claim boundary:** the API, persistence, duplicate suppression, temporal transaction analysis and revenue-at-risk engine are implemented. Included systems, transactions, failures, revenue and costs remain synthetic; adapter names are target contracts, not certified vendor integrations.
 
 ## Painful, urgent and frequent problem
 
@@ -75,6 +75,23 @@ Current verified baseline:
 - deterministic receipt `c34bee5f76414d0155de0cf01fcd5dba1f9aaea38ba3b514f4e2cc94633694ce`
 
 These are synthetic fixture outcomes, not production SLA or revenue claims. Review the [generated transaction scorecard](generated/order-to-cash/executive-scorecard.md).
+
+## Persistent order-to-cash revenue control plane
+
+```bash
+pip install -e '.[test]'
+flowforge-api --database ./flowforge.db --port 8080
+
+curl -s http://127.0.0.1:8080/v1/events \
+  -H 'content-type: application/json' \
+  -d '{"event_id":"evt-1001","transaction_id":"order-1001","customer_id":"customer-42","event_type":"delivered","source":"sap-contract","occurred_at":"2026-08-31T00:00:00Z","amount_usd":50000,"gross_margin_pct":0.4}'
+
+curl -s http://127.0.0.1:8080/v1/exposure
+```
+
+The canonical graph covers opportunity won, order, inventory, shipment, delivery, invoice, payment and revenue recognition. Duplicate events are suppressed. Transactions breaching stage SLOs produce an evidence receipt, the expected next event, accountable customer context, and separate revenue-at-risk and margin-at-risk figures. Automated financial remediation remains disabled.
+
+See the [production acceptance gates](docs/production-readiness.md). The Kubernetes manifest is an honest single-writer reference; production HA requires the documented PostgreSQL/Cosmos DB and transactional-outbox evolution.
 
 ## SAP, Salesforce and Oracle integration
 
