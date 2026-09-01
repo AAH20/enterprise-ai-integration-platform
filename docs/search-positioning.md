@@ -4,6 +4,10 @@ Exact search volume varies by country, platform and date and normally requires G
 
 | Search / hiring term | Repository evidence | Status |
 |---|---|---|
+| Microsoft Azure / Cloud Computing | Bicep evidence plane and Azure Integration Services architecture | Compilable deployment baseline |
+| Data Engineering / Data Analytics | Canonical ledger plus schema, lineage and freshness KPI contracts | Implemented synthetic scorecard |
+| Business Intelligence / Power BI | Executive revenue, reliability, customer and FinOps scorecards | Artifacts implemented; Power BI model remains roadmap |
+| DevOps / Kubernetes | CI replay, image build and hardened Kubernetes contract | Implemented reference deployment |
 | Artificial Intelligence / Generative AI / AI Agents | Bounded diagnostic and remediation architecture around revenue events | Control boundary implemented; model execution remains optional |
 | Enterprise Integration / System Integration | Six-system replay plus persistent canonical revenue-event API | Implemented reference platform |
 | Azure Integration Services | APIM, Service Bus, Event Grid and workflow architecture | Compilable IaC baseline; managed adapters not deployed |
@@ -31,7 +35,7 @@ Exact search volume varies by country, platform and date and normally requires G
 - Azure Architecture Center documents Saga compensation for cross-service consistency: <https://learn.microsoft.com/en-us/azure/architecture/patterns/saga>
 - Azure documents transactional outbox for reliable event delivery: <https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos>
 
-Validated on 2026-08-31. These sources support terminology and architectural relevance, not numerical keyword volume.
+Validated on 2026-09-01. These sources support terminology and architectural relevance, not numerical keyword volume. Exact volumes require an authorized dataset scoped by geography, language, channel and date.
 
 ## Target roles
 

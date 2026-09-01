@@ -1,6 +1,6 @@
 # Enterprise AI Integration Platform
 
-## Azure Integration Services, API Management, Logic Apps, Service Bus, Kafka, Microservices, SAP, Salesforce, Oracle, Odoo, ERPNext, MCP, AI Agents and Durable Workflows
+## Artificial Intelligence, Generative AI, Microsoft Azure, Cloud Computing, Data Engineering, Business Intelligence, Power BI, DevOps, Kubernetes, API Management, Kafka, SAP, Salesforce, Oracle and AI Agents
 
 **FlowForge** is an open-source enterprise integration and revenue-reliability control plane for AI agents, APIs, CRM, ERP, finance, billing, logistics and cloud provisioning. It combines durable Saga evaluation with a persistent canonical order-to-cash event ledger that detects stalled transactions and quantifies revenue and margin at risk.
 
@@ -66,7 +66,7 @@ It injects transient finance and ERP failures, permanent logistics and provision
 
 Current verified baseline:
 
-- **9 behavioral tests**
+- **17 behavioral and KPI tests**
 - **zero duplicate business transactions**
 - **one duplicate delivery suppressed**
 - **seven successful compensating actions**
@@ -75,6 +75,19 @@ Current verified baseline:
 - deterministic receipt `c34bee5f76414d0155de0cf01fcd5dba1f9aaea38ba3b514f4e2cc94633694ce`
 
 These are synthetic fixture outcomes, not production SLA or revenue claims. Review the [generated transaction scorecard](generated/order-to-cash/executive-scorecard.md).
+
+## Comprehensive KPI control plane
+
+Every replay emits machine-readable and executive scorecards covering:
+
+- business revenue realization, exposure, contribution and value-to-cost;
+- reliability, MTTR, deployment performance and connector delivery;
+- data quality, lineage, freshness, AI evaluation and FinOps;
+- customer timeliness, authorization, policy coverage and evidence completeness.
+
+The current fixture passes **19 of 25** targets but correctly returns `improve-before-canary`. Revenue realization, exposure, straight-through processing, schema validity and customer timeliness remain explicit gaps. Hard gates prevent duplicate financial transactions, incomplete evidence or failed authorization controls from being averaged away.
+
+Review the [generated KPI scorecard](generated/order-to-cash/kpi-scorecard.md) and [KPI definitions and evidence classes](docs/kpi-framework.md).
 
 ## Persistent order-to-cash revenue control plane
 
@@ -212,7 +225,7 @@ tests/                       reliability and claim-boundary tests
 
 ## Search and international-role positioning
 
-The repository uses broad current category language: Enterprise Integration, System Integration, Azure Integration Services, API Management, Logic Apps, Service Bus, Event Grid, Kafka, Event-Driven Architecture, Microservices, Distributed Systems, SAP Integration, Salesforce Integration, Oracle Integration, Odoo, ERPNext, Temporal, Dapr, MCP, AI Agents, Kubernetes, Platform Engineering and Business Process Automation.
+The repository uses broad discovery categories supported by implementation: Artificial Intelligence, Generative AI, Microsoft Azure, Cloud Computing, Data Engineering, Data Analytics, Business Intelligence, Power BI, DevOps, Kubernetes, Cybersecurity, API Management, Enterprise Integration, SAP, Salesforce, Oracle, Kafka, Event-Driven Architecture, Microservices, Distributed Systems, AI Agents, Platform Engineering, Business Process Automation and Digital Transformation.
 
 Exact search-volume numbers are not claimed without proprietary keyword tooling. Every term maps to implementation or a disclosed roadmap boundary in [search positioning](docs/search-positioning.md).
 

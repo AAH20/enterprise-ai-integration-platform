@@ -1,0 +1,269 @@
+{
+  "schema_version": "flowforge/kpi-scorecard/v1",
+  "evidence_level": "deterministic replay plus synthetic observations",
+  "summary": {
+    "passed": 19,
+    "total": 25,
+    "target_attainment_pct": 76.0
+  },
+  "hard_gates": {
+    "zero_duplicate_business_transactions": true,
+    "all_unauthorized_actions_blocked": true,
+    "complete_evidence": true
+  },
+  "decision": "improve-before-canary",
+  "metrics": [
+    {
+      "name": "revenue realization",
+      "category": "business",
+      "value": 52.5788,
+      "unit": "%",
+      "target": 90,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "revenue at risk",
+      "category": "business",
+      "value": 33100,
+      "unit": "USD",
+      "target": 5000,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "margin at risk",
+      "category": "business",
+      "value": 13136.0,
+      "unit": "USD",
+      "target": 2000,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "completed contribution",
+      "category": "business",
+      "value": 12009.63,
+      "unit": "USD",
+      "target": 10000,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled synthetic economics"
+    },
+    {
+      "name": "value-to-platform-cost ratio",
+      "category": "business",
+      "value": 21835.6909,
+      "unit": "ratio",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled synthetic economics"
+    },
+    {
+      "name": "straight-through processing",
+      "category": "reliability",
+      "value": 66.67,
+      "unit": "%",
+      "target": 95,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "deterministic replay"
+    },
+    {
+      "name": "duplicate business transactions",
+      "category": "reliability",
+      "value": 0,
+      "unit": "count",
+      "target": 0,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "deterministic replay"
+    },
+    {
+      "name": "duplicate suppression",
+      "category": "reliability",
+      "value": 100,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "deterministic replay"
+    },
+    {
+      "name": "compensation success",
+      "category": "reliability",
+      "value": 100,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "deterministic replay"
+    },
+    {
+      "name": "mean time to recovery",
+      "category": "operations",
+      "value": 24.0,
+      "unit": "minutes",
+      "target": 30,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "deployment frequency",
+      "category": "delivery",
+      "value": 6.0,
+      "unit": "per week",
+      "target": 5,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "change failure rate",
+      "category": "delivery",
+      "value": 8.3333,
+      "unit": "%",
+      "target": 10,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "connector onboarding lead time",
+      "category": "delivery",
+      "value": 8.0,
+      "unit": "days",
+      "target": 10,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "schema-valid events",
+      "category": "data",
+      "value": 99.8,
+      "unit": "%",
+      "target": 99.9,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "data lineage coverage",
+      "category": "data",
+      "value": 99.0,
+      "unit": "%",
+      "target": 99,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "event freshness p95",
+      "category": "data",
+      "value": 42.0,
+      "unit": "seconds",
+      "target": 60,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "AI recommendation acceptance",
+      "category": "ai",
+      "value": 67.5,
+      "unit": "%",
+      "target": 60,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "AI evaluation pass rate",
+      "category": "ai",
+      "value": 96.0,
+      "unit": "%",
+      "target": 95,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "AI cost per accepted recommendation",
+      "category": "ai",
+      "value": 0.16,
+      "unit": "USD",
+      "target": 0.25,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "modeled synthetic cost"
+    },
+    {
+      "name": "cost per unique transaction",
+      "category": "finops",
+      "value": 0.09,
+      "unit": "USD",
+      "target": 1,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "modeled synthetic economics"
+    },
+    {
+      "name": "operating cost reduction",
+      "category": "finops",
+      "value": 97.8175,
+      "unit": "%",
+      "target": 50,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled synthetic economics"
+    },
+    {
+      "name": "on-time customer outcomes",
+      "category": "customer",
+      "value": 83.3333,
+      "unit": "%",
+      "target": 95,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "unauthorized actions blocked",
+      "category": "security",
+      "value": 100.0,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "policy coverage",
+      "category": "security",
+      "value": 100.0,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    },
+    {
+      "name": "evidence completeness",
+      "category": "compliance",
+      "value": 100.0,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic observation"
+    }
+  ],
+  "claim_boundary": "All business values and observations are synthetic. Replace them with signed production telemetry before commercial claims.",
+  "receipt_sha256": "bae662f90d75fd1d7617d1cd295997178b99a750fba3fcc9c006ff14bf89c0a8"
+}

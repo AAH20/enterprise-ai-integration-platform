@@ -19,6 +19,15 @@
     }
   },
   "unit_economics": {"baseline_cost_per_transaction_usd":4.2,"baseline_human_minutes_per_transaction":18},
+  "kpi_context": {
+    "event_observations": 1000, "schema_valid_events": 998, "lineage_covered_events": 990,
+    "event_freshness_p95_seconds": 42, "mttr_minutes": 24, "deployments": 12,
+    "deployments_per_week": 6, "failed_deployments": 1, "connector_onboarding_days": 8,
+    "ai_recommendations": 40, "accepted_ai_recommendations": 27, "ai_eval_pass_pct": 96,
+    "ai_cost_usd": 4.32, "on_time_outcomes": 5, "authorization_attempts": 7,
+    "authorization_blocks": 7, "privileged_actions": 18, "policy_covered_actions": 18,
+    "evidence_complete_events": 1000
+  },
   "transactions": [
     {"transaction_id":"TX-1001","idempotency_key":"ORDER-1001-V1","profile":"enterprise","revenue_usd":12500,"gross_margin_pct":0.36},
     {"transaction_id":"TX-1002","idempotency_key":"ORDER-1002-V1","profile":"enterprise","revenue_usd":8300,"gross_margin_pct":0.31,"failure_injection":"transient:finance"},

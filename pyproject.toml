@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "flowforge-integration"
 version = "1.0.0"
-description = "AI-native enterprise integration, durable workflows, SAP, Salesforce, Oracle and OSS adapters"
+description = "Enterprise AI, Azure cloud integration, data engineering, KPI analytics, SAP, Salesforce, Oracle and durable workflows"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [{name = "Ahmed Hassan"}]
